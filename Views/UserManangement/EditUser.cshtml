@@ -1,0 +1,104 @@
+﻿
+<head>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
+
+
+
+    <script>
+
+        $(function () {
+
+            // boostrap 4 load modal example from docs
+            $('#modal-container').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var url = button.attr("href");
+                var modal = $(this);
+
+                // note that this will replace the content of modal-content ever time the modal is opened
+                modal.find('.modal-content').load(url);
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <p><h3>Пользователи</h3></p>
+    <div class="table-responsive">
+        <table id="example" class="table mydatatable" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Логин</th>
+                    <th>Пароль</th>
+                    <th>Отдел</th>
+                    <th>Действие</th>
+                    <th>Действие</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in ViewBag.Users)
+                {
+                    <tr>
+
+                        <td>@user.FIO</td>
+                        <td>@user.Login</td>
+                        <td>@user.Password</td>
+                        <td>@user.Department</td>
+
+                        <td>
+                            <a class="btn btn-sm btn-primary" asp-controller="UserManangement" asp-action="EditUserModal" data-target="#modal-container" data-toggle="modal" asp-route-id="@user.Id">Изменить</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-info" asp-controller="RolesManangement" asp-action="EditUserRole" data-target="#modal-container" data-toggle="modal" asp-route-id="@user.Id">Права доступа</a>
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-controller="UserManangement" asp-route-id="@user.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Удалить
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+    </div>
+    <script>
+        $('.mydatatable').DataTable({
+            "pagingType": "full_numbers",
+            lengthMenu: [[5, 10, 15, 20, 50, -1], [5, 10, 15, 20, 50, "Все"]],
+            "oLanguage": {
+                "sLengthMenu": "Показать _MENU_ записей на странице",
+                "sZeroRecords": "Извините - ничего не найдено",
+                "sInfo": "Показано _START_ до _END_ из _TOTAL_ записей",
+                "sInfoEmpty": "Нет записей",
+                "sInfoFiltered": "(из _MAX_ записей)",
+                "sSearch": "Поиск:",
+                "oPaginate": {
+                    "sNext": "След. стр.",
+                    "sPrevious": "Пред. стр.",
+                    "sFirst": "Первая",
+                    "sLast": "Последняя"
+                }
+            }
+        });
+    </script>
+    <div id="modal-container" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+

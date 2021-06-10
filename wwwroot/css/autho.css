@@ -1,0 +1,65 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:wght@100&display=swap');
+body {
+	background-color: gainsboro;
+}
+.login-block {
+	background-color: #fff;
+	
+	-webkit-box-shadow: 0 3px 50px 0 rgba(0,0,0,.1);
+	box-shadow: 0 3px 50px 0 rgba(0,0,0,.1);
+	text-align: center;
+	border-radius: 10px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+	login-block h6 {
+		font-family: 'Roboto',sans-serif;
+		color: #96a2b2;
+		letter-spacing: 1px
+	}
+
+	.login-block h3 {
+		font-family: 'Roboto',sans-serif;
+		font-size: 25px;	
+		margin-top: 5px;
+	}
+
+.login-block .input-group-addon {
+	padding-top: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+	
+	color: #29aafe;
+	font-size: 15px;
+	opacity: .5
+}
+.form-group {
+	padding-right: 5%;	
+	font-family: 'Roboto',sans-serif;
+}
+.form-control{
+	font-size:15px;
+}
+.login-block .btn-block {
+	margin-left: 15%;
+	background: #29aafe;
+	border-color: #29aafe;
+}
+.btn-block {
+	font-family: 'Roboto',sans-serif;
+	font-size: 15px;
+	padding-top: 5%;
+	display: block;
+	width: 70%;
+}
+
+.login-block .hr-xs {
+	margin-top: 5px;
+	margin-bottom: 5px
+}
+

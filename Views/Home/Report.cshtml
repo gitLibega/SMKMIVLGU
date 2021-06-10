@@ -1,0 +1,148 @@
+﻿@model SMKMIVLGU.Models.PatternIkProcessRowViewModel
+@{var date = DateTime.Now.Date.Year.ToString();}
+@{
+    ViewData["Title"] = "Создать отчет";
+}
+<div class="row container box-shadow">
+    <div class="col-md-4">
+        <div class="accordion" id="accordionExample" style="margin-bottom:5px;">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Выбрать ик-процесс
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" style="margin-bottom:5px;" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body" style="border-bottom:2px solid #f1e6e6;">
+                        <div class="list-group">
+                            @foreach (var ik in ViewBag.iks)
+                            {
+                                <form method="get" asp-action="Report" asp-route-id="@ik.id">
+                                    <button type="submit" class="list-group-item list-group-item-action btn-info btn-sm " style="margin-bottom:5px;">@ik.СodeIkProcess-@ik.RSMK</button>
+                                </form>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+</div>
+<br />
+@if (Model != null)
+{
+
+    
+
+    <div class="col-md-4">
+        <h3>Редактировать данные</h3>
+       Период:<input id="season" type="text" class="ik" placeholder="Код ИК-процесса" style="margin-bottom:5px;" />
+       
+
+    </div>
+
+    <div class="col-md-12">     
+        <div class="table-responsive">
+            <table id="example" class="table table-bordered  table-condensed mydatatable" style="width:80%">
+                <thead>
+                    <tr style="background-color:#f3f3f3;">
+
+                        <th class="text-center">Цель процесса, направленная на достижение установленных результатов / исполнители</th>
+                        <th class="text-center">Показатель процесса</th>
+                        <th class="text-center">Измеряемое значение дляпоказателя процесса</th>
+                        <th class="text-center">Единица величины</th>
+                        <th class="text-center">Способ измерения/ Метод анализа</th>
+                        <th class="text-center">Целевые значения показателя на конец @date</th>
+                        <th class="text-center seas1">Фактическое значение показателя на @date</th>
+                        <th class="text-center seas2">Результативность показателя процесса на @date</th>
+
+                    </tr>
+                    <tr style="background-color:#f3f3f3;">
+                        <th class="text-center">1 </th>
+                        <th class="text-center">2</th>
+                        <th class="text-center">3</th>
+                        <th class="text-center">4</th>
+                        <th class="text-center">5</th>
+                        <th class="text-center">6</th>
+                        <th class="text-center">7</th>
+                        <th class="text-center">8</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @Html.Raw(@Model.RowHtmlCode);
+                </tbody>
+
+            </table>
+        </div>
+        <br />
+        <button onclick="Send()" type="submit" id="btn" class="btn btn-primary">Сохранить</button>
+        <p />
+    </div>
+}
+<script>
+
+    $("#season").keyup(function () {
+        if ($("#season").val() != "") {
+            $('.seas1').html("Фактическое значение показателя на " + $("#season").val() + " " + @date +" г.");
+            $('.seas2').html("Результативность показателя процесса на " + $("#season").val()+ " "+ @date +" г.");
+            }
+            else {
+            $('.seas1').html("Фактическое значение показателя на "+@date);
+            $('.seas2').html("Результативность показателя процесса на "+@date);
+            }
+
+        });
+    $("#example").on('DOMSubtreeModified', "td", function (e) {
+        if ($(this).attr('class').split(' ').includes('num')) {
+            if (!/^\d*[.]?\d*$/.test($(this).text())) {
+                $(this).text('');
+            }
+            else {
+                var kek = $(this).parent().children();
+                kek[kek.length - 1].textContent = Math.floor( Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+            }
+        }
+    });
+
+    window.onload = function () {
+        $("td").removeAttr('contenteditable');
+
+        for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('contenteditable', 'true'); }
+
+    }
+    function Send() {
+        var result = $('tbody')[0].innerHTML;
+        var _url = window.location.href.split('/');
+        var trashId = _url[_url.length - 1];
+        var idIkProcess = Number(trashId.substring(0, trashId.length - 1));
+
+        var season = $("#season").val();
+        if (result.length > 0 && season!="") {
+            
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Report")',
+                    data: {
+                        keks: result,
+                        ikId: idIkProcess,
+                        season: season
+                    }
+                }).done(function () {
+                    location.reload();
+                });
+            
+        }
+        else {
+            alert("Таблица или период не заполнены");
+            bool = false;
+        }
+    }
+
+</script>
+

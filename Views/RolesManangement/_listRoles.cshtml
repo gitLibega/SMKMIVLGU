@@ -1,0 +1,52 @@
+﻿<h3>Список ролей</h3>
+<head>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
+</head>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in ViewBag.Roles)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <form asp-action="Delete" asp-controller="RolesManangement" asp-route-id="@role.Id" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Удалить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+    </div>
+<script>
+    $('.table').DataTable({
+        "pagingType": "full_numbers",
+        lengthMenu: [[5, 10, 15, 20, 50, -1], [5, 10, 15, 20, 50, "Все"]],
+        "oLanguage": {
+            "sLengthMenu": "Показать _MENU_ записей на странице",
+            "sZeroRecords": "Извините - ничего не найдено",
+            "sInfo": "Показано _START_ до _END_ из _TOTAL_ записей",
+            "sInfoEmpty": "Нет записей",
+            "sInfoFiltered": "(из _MAX_ записей)",
+            "sSearch": "Поиск:",
+            "oPaginate": {
+                "sNext": "След. стр.",
+                "sPrevious": "Пред. стр.",
+                "sFirst": "Первая",
+                "sLast": "Последняя"
+            }
+        }
+    });
+</script>

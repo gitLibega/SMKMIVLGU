@@ -1,0 +1,159 @@
+﻿@{
+    Layout = null;
+}
+@model SMKMIVLGU.Models.IKProcess.ReportViewModel
+@{var year = DateTime.Now.Date.Year.ToString();
+    var day = @DateTime.Now.Date.Day.ToString();
+    var monat = DateTime.Now.ToString("MM");}
+<head>
+    <link rel="stylesheet" href="~/css/report.css" />
+    <link rel="stylesheet" href="~/css/print.css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <style>
+        th {
+           
+            font-weight: bold;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<header>
+    <button onclick="print()" type="submit" class="noPrint">Печатать</button>
+    <button onclick="Edit()" type="submit" class="noPrint">Изменить</button>
+    <button onclick="AddAsNew()" type="submit" class="noPrint">Сохранить как новый</button>
+</header>
+<body style="margin: 10mm 10mm 5mm 10mm;">
+    <div id="header">
+        <p contenteditable="true">Приложение А</p>
+        <p contenteditable="true">Планирование и результативность процесса 2.9 – Подготовка кадров высшей квалификации</p>
+    </div>
+    <div id="frame">
+        <div style="width: 15%; display: inline-block;">
+            <b>Период планирования:</b>
+        </div>
+        <div style="width: 75%; display: inline-block;">
+              <div id="date" contenteditable="true" ></div>  
+        </div>
+    </div>
+    <div class="col-md-12">
+
+        <table class="table" style="width:100%">
+            
+                <tr class="thead" style="background-color:#f3f3f3;">
+
+                    <th class="text-center">Цель процесса, направленная на достижение установленных результатов / исполнители</th>
+                    <th class="text-center">Показатель процесса</th>
+                    <th class="text-center">Измеряемое значение дляпоказателя процесса</th>
+                    <th class="text-center">Единица величины</th>
+                    <th class="text-center">Способ измерения/ Метод анализа</th>
+                    <th class="text-center">Целевые значения показателя на конец @year</th>
+                    <th class="text-center seas1">Фактическое значение показателя на @Model.Season @year г. </th>
+                    <th class="text-center seas2">Результативность показателя процесса на @Model.Season @year г.</th>
+
+                </tr>
+                <tr class="thead" style="background-color:#f3f3f3;">
+                    <th class="text-center">1 </th>
+                    <th class="text-center">2</th>
+                    <th class="text-center">3</th>
+                    <th class="text-center">4</th>
+                    <th class="text-center">5</th>
+                    <th class="text-center">6</th>
+                    <th class="text-center">7</th>
+                    <th class="text-center">8</th>
+
+                </tr>
+            
+            <tbody>
+                @Html.Raw(Model.RowHtmlCode);
+            </tbody>
+        </table>
+        <br />
+        <div id="footer">        
+            <div id="person">
+                &nbsp;Руководитель процесса:
+                <br />
+                <textarea rows="3"></textarea>
+            </div>
+            <div id="sign">
+                <br />
+                <br />
+                <textarea rows="3"></textarea>              
+            </div>
+            <div class="date">
+                «<ins contenteditable="true">@day</ins>» <ins contenteditable="true">@monat</ins>&nbsp;@year г.
+            </div>
+        </div>
+    </div>
+
+</body>
+<br /> 
+<p />
+<script>
+    $('td').attr('contenteditable','true')
+   function Edit() {
+
+            for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('class', 'num'); }
+            var result = $('tbody')[1].innerHTML;
+            var _url = window.location.href.split('/');
+            var trashId = _url[_url.length - 1];
+        var idIkProcess = trashId.match(/(-?\d+(\.\d+)?)/g)[0];
+
+                if (result.length > 0) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("EditReport")',
+                        data: {
+                            keks: result,
+                            id: Number(idIkProcess)
+                        }
+                    }).done(function () {
+                        alert("Отчет изменен!");
+                    });
+                }
+                else {
+                    alert("Необходимо заполнить таблицу!");
+                    bool = false;
+                }
+    }
+     function AddAsNew() {
+
+            for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('class', 'num'); }
+            var result = $('tbody')[1].innerHTML;
+            var _url = window.location.href.split('/');
+            var trashId = _url[_url.length - 1];
+        var idIkProcess = trashId.match(/(-?\d+(\.\d+)?)/g)[0];
+
+                if (result.length > 0) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("AddReportAsNew")',
+                        data: {
+                            keks: result,
+                            id: Number(idIkProcess)
+                        }
+                    }).done(function () {
+                        alert("Отчет добавлен!");
+                    });
+                }
+                else {
+                    alert("Необходимо заполнить таблицу!");
+                    bool = false;
+                }
+    }
+    $(".table").on('DOMSubtreeModified', "td", function (e) {
+        if ($(this).attr('class').split(' ').includes('num')) {
+            if (!/^\d*[.]?\d*$/.test($(this).text())) {
+                $(this).text('');
+            }
+            else {
+                var kek = $(this).parent().children();
+                kek[kek.length - 1].textContent = Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+            }
+        }
+    });
+
+</script>

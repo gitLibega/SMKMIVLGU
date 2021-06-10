@@ -1,0 +1,72 @@
+﻿body{
+	font-family:'Times New Roman';
+	font-size:14px;
+}
+.table thead tr th {
+	vertical-align: middle;
+	font-family: "Times New Roman", Times, serif;
+	border: 2px solid black;
+	border-bottom: 2px solid #000000;
+	font-weight:bold;
+}
+
+.table tbody tr td {
+	border: 1px solid black;
+	vertical-align: middle;
+	font-family: "Times New Roman", Times, serif;
+	
+}
+
+.table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+
+#header {
+	text-align: center;
+	font-weight: bold;
+}
+#frame textarea{
+	min-width:14px
+}
+textarea {
+	
+	resize:both;
+	font-family:'Times New Roman';
+	font-size:14px;
+	overflow:auto;	
+	width:100%;
+	
+}
+#date {
+	border:1px; 
+	border-style:solid;
+}
+#person {
+	margin-left: 6%;
+	width: 40%;
+	display: inline-block;
+}
+#sign {
+	margin-right: 6%;
+	width: 45%;
+	display: inline-block;
+	text-align: right;
+}
+#sign textarea{
+	text-align:right;
+}
+p {
+	margin: 0;
+}
+
+
+
+.date {
+	text-align: right;
+	margin-left: 47%;	
+	width: 45%;
+	display: inline-block;
+	
+}

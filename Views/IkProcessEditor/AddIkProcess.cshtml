@@ -1,0 +1,297 @@
+﻿@model SMKMIVLGU.Models.IkProcessViewModel
+@{var date=DateTime.Now.Date;}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+    
+
+   
+
+
+
+</head>
+<body>
+
+    <div class=" container-fluid row box-shadow">
+
+        <div class=" col-md-4">
+            
+                <h3>Создать ИК-процесс</h3>
+               
+                <div class="input-group">
+
+                    <input id="codeIK" type="text" class="ik" placeholder="Код ИК-процесса" style="margin-bottom:5px;" />
+                    <input id="codeDoc" class="ik" placeholder="Код документированной процедуры" style="margin-bottom:5px;" />
+                    <input id="codeIk" class="ik" placeholder="Наименования раздела РСМК" style="margin-bottom:5px;" />
+
+                </div>
+            </div>
+            <div class=" col-md-4">
+                <h3>Действия</h3>
+                <div class="input-group">
+                    <div style="text-align:center;" >
+                        <a asp-action="EditIkProcess" class="text-warning">
+                            <i class="fas fa-wrench fa-4x" aria-hidden="true"></i>
+                        </a>
+                        <p style="font-size:15px;text-align:center;color:black;">Редактировать</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class=" col-md-12">
+                <h3>Задать показатели</h3>
+
+                <div class="table-responsive">
+                    
+                    <table id="example" class="table table-condensed table-bordered mydatatable"
+                        style="width:100%">
+                        <thead>
+                            <tr style="background-color:#f3f3f3;">
+
+                                <th class="text-center">Цель процесса, направленная на достижение установленных результатов / исполнители</th>
+                                <th class="text-center">Показатель процесса</th>
+                                <th class="text-center">Измеряемое значение дляпоказателя процесса</th>
+                                <th class="text-center">Единица величины</th>
+                                <th class="text-center">Способ измерения/ Метод анализа</th>
+                                <th class="text-center">Целевые значения показателя на конец  @date.Year.ToString() г.</th>
+                                <th class="text-center">Фактическое значение показателя  на анализируемый период @date.Year.ToString()  г.</th>
+                                <th class="text-center">Результативность показателя процесса  на анализируемый период @date.Year.ToString() г., %</th>
+                            </tr>
+                            <tr style="background-color:#f3f3f3;">
+                                <th class="text-center">1</th>
+                                <th class="text-center">2</th>
+                                <th class="text-center">3</th>
+                                <th class="text-center">4</th>
+                                <th class="text-center">5</th>
+                                <th class="text-center">6</th>
+                                <th class="text-center">7</th>
+                                <th class="text-center">8</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pt-3-half" contenteditable="true">
+                                    Наращивание объемов
+                                    финансирования НИР в
+                                    университете / Первый
+                                    зам. директора, НИС
+                                </td>
+                                <td class="pt-3-half" contenteditable="true">Объем финансирования НИР в университете </td>
+                                <td class="pt-3-half" contenteditable="true">Объем заключенных договоров и выделенных средств на финансирование НИОКР в отчетном году </td>
+                                <td class="pt-3-half" contenteditable="true">млн руб. </td>
+                                <td class="pt-3-half" contenteditable="true"> Учет результатов/сравнение</td>
+                                <td class="pt-3-half" contenteditable="true"> 2</td>
+                                <td class="pt-3-half" contenteditable="true"> 2</td>
+                                <td class="pt-3-half" contenteditable="true"> 2</td>
+                            </tr>
+                            <tr>
+                                <td class="pt-3-half" contenteditable="true">
+                                    Обеспечение высоких
+                                    результатов научно-
+                                    исследовательской
+                                    работы ученых ВлГУ в
+                                    соответствии с
+                                    аккредитационными
+                                    показателями / Первый
+                                    зам. директора, НИС,
+                                    кафедры
+                                    / Первый зам. директора,
+                                    НИС
+                                </td>
+                                <td class="pt-3-half" contenteditable="true"> Результативность НИР одного ППС</td>
+                                <td class="pt-3-half" contenteditable="true">Средний объем НИР профинансированных в отчетном году на единицу ППС </td>
+                                <td class="pt-3-half" contenteditable="true">тыс. руб./чел. </td>
+                                <td class="pt-3-half" contenteditable="true"> млн руб.</td>
+                                <td class="pt-3-half" contenteditable="true">2</td>
+                                <td class="pt-3-half" contenteditable="true">2</td>
+                                <td class="pt-3-half" contenteditable="true">2</td>
+
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                  
+                </div>
+                <br />
+
+                <div class=" float-right mb-3 mr-2 btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> None
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Соеденить строки
+                    </label>
+                   
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option4" autocomplete="off"> Числовая ячейка
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option4" autocomplete="off"> Обычная ячейка
+                    </label>
+                </div>
+
+                <span class="float-right mb-3 mr-2">
+                    <input class="small" type="number" min="2" max="5" value="2" id="count" style="width:70px;">
+                </span>
+                <span class="table-remove float-right mb-3 mr-2">
+                    <a href="#!" class="text-danger">
+                        <i class="fas fa-minus fa-2x" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span class="table-add float-right mb-3 mr-2">
+                    <a href="#!" class="text-success">
+                        <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <button onclick="Add()" type="submit" id="btn" class="btn btn-primary">Добавить</button>
+                <p />
+
+            </div>
+
+        </div>
+</body>
+<script>
+
+    function Add() {
+        var bool = true;
+        for (var i = 0; i < document.getElementsByClassName('ik').length; i++) {
+            if (document.getElementsByClassName('ik')[i].value == null || document.getElementsByClassName('ik')[i].value == "") {
+                return alert("Необходимо заполнить все поля!");
+                bool = false;
+            }
+        }
+        if (bool == true) {
+
+                var names = [];
+
+                for (var i = 0; i < document.getElementsByClassName('ik').length; i++) {
+                    var kek = document.getElementsByClassName('ik')[i];
+                    names.push(kek.value);
+            }
+            for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('class', 'num'); }
+            var result = $('tbody')[0].innerHTML;
+
+
+                if (result.length > 0) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("AddIkProcess")',
+                        data: {
+                            keks: result,
+                            ikProcessData: names
+                        }
+                    }).done(function () {
+                        location.reload();
+                    });
+                }
+                }
+                else {
+                    alert("Необходимо заполнить таблицу!");
+
+                }
+            }
+    
+
+
+    $("#example").on("click", "td", function (e) {
+
+        if (document.getElementsByClassName("btn-group-toggle")[0].children[1].getAttribute('class').split(' ').includes('active')) {
+
+            if ($(this).parent().parent().children().index($(this).parent()) != $(this).parent().parent().children().length - 1);
+            {
+                var count = 0;
+                for (var i = $(this).parent().parent().children().index($(this).parent()); i < $(this).parent().parent().children().length; i = i + 1) {
+                    count = count + 1;
+                }
+                if (typeof $(this).attr('rowspan') === 'undefined') {
+                    if (document.getElementById('count').value <= count && document.getElementById('count').value > 1) {
+                        var index = $(this).parent().children().index($(this));
+                        var n = 0;
+                        var j = $(this).parent().parent().children().index($(this).parent());
+                        $(this).attr("rowspan", document.getElementById('count').value);
+                        while (n < document.getElementById('count').value - 1) {
+                            var j = j + 1;
+                            $(this).parent().parent().children()[j].children[index].remove();
+
+                            n++;
+                        }
+
+                        // alert($(this).parent().parent().children().index($(this).parent()));
+                    }
+                }
+                else {
+                    
+                    if (Number($(this).attr('rowspan')) < document.getElementById('count').value) {
+
+                        var count = 0;
+                        for (var i = $(this).parent().parent().children().index($(this).parent()); i < $(this).parent().parent().children().length; i = i + 1) {
+                            count = count + 1;
+                        }
+                        if (document.getElementById('count').value <= count && document.getElementById('count').value > 1) {
+                            var index = $(this).parent().children().index($(this));
+                            var n = 0;
+                            var j = $(this).parent().parent().children().index($(this).parent()) + (Number($(this).attr('rowspan'))-1);
+                           
+                           
+                            while (n < (document.getElementById('count').value - Number($(this).attr('rowspan')))) {
+                              
+                                j = j + 1;
+                                $(this).parent().parent().children()[j].children[index].remove();                               
+                                n++;
+                            }
+                            $(this).attr("rowspan", document.getElementById('count').value);
+                        }
+
+                    }
+                    else if (Number($(this).attr('rowspan')) > document.getElementById('count').value) {
+                        var count = 0;
+                        for (var i = $(this).parent().parent().children().index($(this).parent()); i < $(this).parent().parent().children().length; i = i + 1) {
+                            count = count + 1;
+                        }
+                        if (document.getElementById('count').value <= count) {
+                            var index = $(this).parent().children().index($(this));
+                           
+                            var j = $(this).parent().parent().children().index($(this).parent()) + (Number($(this).attr('rowspan')) - 1);
+                                                   
+                            var attributes = $(this).prop("attributes");                           
+                          
+                            for (j; j > Number(document.getElementById('count').value)-1; j--) {    
+                              
+                                $(this).parent().parent().children()[j].children[index].insertAdjacentHTML("beforeBegin", '<td  class="pt - 3 - half" contenteditable="true" style="white - space: nowrap;"></td>');
+                               
+                            }
+                            $(this).attr("rowspan", document.getElementById('count').value);
+                        }
+                    }
+                }
+
+            }
+        }      
+        else if (document.getElementsByClassName("btn-group-toggle")[0].children[2].getAttribute('class').split(' ').includes('active')) {
+            $(this).attr('class', 'num');
+        }
+        else if (document.getElementsByClassName("btn-group-toggle")[0].children[3].getAttribute('class').split(' ').includes('active')) {
+            $(this).removeAttr('class', 'num');
+        }
+
+    });
+    $(function () {
+        $('#example')
+    })
+    $("#example").on('DOMSubtreeModified', "td", function (e) {
+        if ($(this).attr('class').split(' ').includes('num')) {
+            if (!/^\d*[.]?\d*$/.test($(this).text()) ) {
+                $(this).text('');
+            }
+            else {
+                var kek = $(this).parent().children();
+                kek[kek.length - 1].textContent = Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+            }
+        }
+        });
+    
+</script>

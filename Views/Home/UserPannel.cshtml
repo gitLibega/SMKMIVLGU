@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_Layout";
+}
+@ViewBag.Model
+<head>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="hhttps://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
+</head>
+<body>
+        <div class=" container tab-pane active" id="editUsers" style="background-color:white ">
+            @{Html.RenderPartial("~/Views/Auth/AddUser.cshtml"); }
+        </div>
+    <script>
+
+        $('select#rolles').on('change', function () {
+            $('input[name="rolle"]').val(this.value);
+        });
+        $('select#IKs').on('change', function () {
+            $('input[name="IK"]').val(this.value);
+        });
+   
+    </script>
+
+
+</body>

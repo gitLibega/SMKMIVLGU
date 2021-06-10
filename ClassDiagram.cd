@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SMKMIVLGU.Controllers.AuthController">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAAAAAAAAAIABAAAIAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\User\AuthController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Controllers.UserManangementController">
+    <Position X="2.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAAAAAAAAAAAAAABAAAAEAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Controllers\User\UserManangementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Controllers.RolesManangementController">
+    <Position X="5.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAQAAAAAAAAAgAAEAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Controllers\User\RolesManangementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.RegistrationViewModel">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAQAAIAAAA=</HashCode>
+      <FileName>Models\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.User">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.EditUserViewModel">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAQIAAAgAAAAAAAAAEAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\EditUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.AuthorizationViewModel">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAIQAAAAAAA=</HashCode>
+      <FileName>Models\AuthorizationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.UserRelationship">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAgAAAAAAAAAAAAABAAAAAAQAAAAAgA=</HashCode>
+      <FileName>Models\UserRelationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

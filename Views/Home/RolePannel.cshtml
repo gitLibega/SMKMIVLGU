@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "_Layout";
+}
+@ViewBag.Model
+<head>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
+</head>
+<body>
+
+
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="#editUsers" class="btn" data-toggle="tab">Пользователи</a>
+        </li>
+
+        <li>
+            <a href="#addRolle"  class="btn" data-toggle="tab">Добавить роль</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class=" container tab-pane active"style="background-color:white ">
+            @{Html.RenderPartial("~/Views/RolleManangement/_AddUserRole.cshtml"); }
+        </div>
+    </div>
+</body>
+<script>
+    $('.mydatatable').DataTable({
+        "pagingType": "full_numbers",
+        lengthMenu: [[5, 10, 15, 20, 50, -1], [5, 10, 15, 20, 50, "All"]]
+    });
+</script>

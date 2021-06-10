@@ -1,0 +1,45 @@
+﻿@model SMKMIVLGU.Models.AuthorizationViewModel
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
+    <link rel="stylesheet" href="~/css/autho.css" />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body class="login-page">
+    <main>
+        <div class="login-block">
+            
+            <form method="post" asp-controller="Auth" asp-action="Authorization" asp-route-returnUrl="@Model.ReturnUrl">
+
+
+                <h3>Авторизация</h3>
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="form-group">
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                        <input asp-for="Login" type="text" class="form-control" placeholder="Ваш логин">
+                        <span asp-validation-for="Login"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+                        <input asp-for="Password" type="password" id="password-input" class="form-control" name="password" placeholder="Ваш пароль">
+                        <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+
+                </div>
+                <button class="btn btn-primary btn-block" type="submit"><h4>Вход</h4></button>
+            </form>
+        </div>
+    </main>
+</body>

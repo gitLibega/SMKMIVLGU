@@ -1,0 +1,115 @@
+﻿@model SMKMIVLGU.Models.RegistrationViewModel
+<head>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
+</head>
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <p><h3>Добавить пользователя</h3></p>
+            <form asp-controller="Auth" asp-action="AddUser">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="input-group" style="margin-bottom:5px;">
+
+                    <input asp-for="FIO" placeholder="ФИО">
+                    <span asp-validation-for="FIO"></span>
+                </div>
+                <div class="input-group" style="margin-bottom:5px;">
+
+                    <input asp-for="Login" placeholder="Логин">
+                    <span asp-validation-for="Login"></span>
+                </div>
+                <div class="input-group" style="margin-bottom:5px;">
+                    <input asp-for="Password" placeholder="Пароль">
+                    <span asp-validation-for="Password"></span>
+                </div>
+
+                <div class="input-group" style="margin-bottom:5px;">
+                    <input asp-for="Department" placeholder="Отдел">
+                    <span asp-validation-for="Department"></span>
+                </div>
+                <div class="accordion" id="accordionExample" style="margin-bottom:5px;">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Назначить процессы:
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="input-group">
+
+                                    <table>
+                                        @{ for (int i = 0; i < Model.IkProcesses.Capacity; i++)
+
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.HiddenFor(X => Model.IkProcesses[i].id)
+                                                        @Html.DisplayFor(X => Model.IkProcesses[i].Title)
+                                                    </td>
+                                                    <td>
+                                                        @Html.CheckBoxFor(it => Model.IkProcesses[i].isChecked)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="accordionExample1">
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                    Назначить подопечных:
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample1">
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <table>
+                                        @{ for (int i = 0; i < Model.Relationships.Capacity; i++)
+
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.HiddenFor(X => Model.Relationships[i].id)
+                                                        @Html.DisplayFor(X => Model.Relationships[i].Title)
+                                                    </td>
+                                                    <td>
+                                                        @Html.CheckBoxFor(it => Model.Relationships[i].isChecked)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+                <button type="submit" class="btn btn-primary btn-block" style="background-color: #1da01b;"><h4>Добавить</h4></button>
+            </form>
+        </div>
+       
+        <div class="col-md-9">
+            @{Html.RenderPartial("~/Views/UserManangement/EditUser.cshtml", (List<User>)ViewBag.Users);}
+        </div>
+
+    </div>
