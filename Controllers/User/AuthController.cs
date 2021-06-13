@@ -83,10 +83,28 @@ namespace SMKMIVLGU.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return RedirectToAction("UserPannel", "Home");
+                   
                 }
             }
-            return View("~/Views/Home/UserPannel.cshtml");
+            var Item = _userManager.Users.ToList();
+            var ikProcess = _db.IkProcesses.ToList();
+            model.Relationships = Item.Select(vm => new CheckBoxItem()
+            {
+                id = vm.Id,
+                Title = vm.FIO + $"({vm.Department})",
+                isChecked = false
+
+
+            }).ToList();
+            model.IkProcesses = ikProcess.Select(vm => new CheckBoxItem()
+            {
+                id = vm.id.ToString(),
+                Title = vm.СodeIkProcess + $"({vm.RSMK})",
+                isChecked = false
+
+
+            }).ToList();
+            return View("~/Views/Home/UserPannel.cshtml",model);
         }
         [HttpGet]
 		public IActionResult Authorization(string returnUrl = null)

@@ -54,9 +54,9 @@ namespace SMKMIVLGU
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Auth}/{action=Authorization}/{id?}");
 			});
-			RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env);
+			
 		}
 	}
 }

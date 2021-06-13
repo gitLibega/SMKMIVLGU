@@ -11,7 +11,7 @@ namespace SMKMIVLGU.Controllers.IK_Report
 {
     public class EditAndGenerateReportsController : Controller
     {
-        public string kek = "";
+       
         ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
         public EditAndGenerateReportsController(ApplicationDbContext db, UserManager<User> userManager)

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SMKMIVLGU.Models.UserRelationship">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAgA=</HashCode>
+      <FileName>Models\UserRelationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.User">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.RegistrationViewModel">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAEAAIAAACAAAQAAIAAAA=</HashCode>
+      <FileName>Models\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.PermissionViewModel" Collapsed="true">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PermissionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.EditUserViewModel">
+    <Position X="8.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAQIAABgAAAAAAAACEAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\EditUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.AuthorizationViewModel">
+    <Position X="10" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAIQAAAAAAA=</HashCode>
+      <FileName>Models\AuthorizationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.ConfigurationPatternViewModel">
+    <Position X="1.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACACAAAAAAAAAAQAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\IKProcess\ConfigurationPatternViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.IKProcess.HistoryViewModel">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAEAAAAAAAgAAAAAAAAgA=</HashCode>
+      <FileName>Models\IKProcess\HistoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.IkProcessViewModel">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAgg=</HashCode>
+      <FileName>Models\IKProcess\IkProcessViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.PatternIkProcessRowViewModel">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IKProcess\PatternIkProcessRowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.IKProcess.ReportViewModel">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAQAACAAAAIAAAAgAAAAAAAAAAQAAAIAAAAA=</HashCode>
+      <FileName>Models\IKProcess\ReportViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMKMIVLGU.Models.IKProcess.UserIkProcessRelViewModel">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAACAAAAAAAAAgAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\IKProcess\UserIkProcessRelViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
