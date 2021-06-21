@@ -2,12 +2,14 @@
 	font-family:'Times New Roman';
 	font-size:14px;
 }
-.table thead tr th {
+.table tr th {
 	vertical-align: middle;
 	font-family: "Times New Roman", Times, serif;
 	border: 2px solid black;
 	border-bottom: 2px solid #000000;
-	font-weight:bold;
+	font-weight: bold;
+	background-color: #f3f3f3;
+	
 }
 
 .table tbody tr td {

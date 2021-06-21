@@ -6,12 +6,19 @@ button{
 	display: none;
 }
 
-th {
+
+tr th {
 	-webkit-print-color-adjust: exact;
 	font-weight: bold;
 	border: 1px solid black;
+	background-color: #f3f3f3;
 }
-
+.noPrint{
+	display:none;
+}
+h3{
+	color:red;
+}
 textarea {
 	border: 0;
 	resize: none;
@@ -23,6 +30,7 @@ textarea {
 html, body {
 	height: 210mm;
 	width: 297mm;
+	
 }
 @page {
 	size: landscape;

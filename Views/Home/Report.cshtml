@@ -41,7 +41,7 @@
 
     <div class="col-md-4">
         <h3>Редактировать данные</h3>
-       Период:<input id="season" type="text" class="ik" placeholder="Код ИК-процесса" style="margin-bottom:5px;" />
+       Период:<input id="season" type="text" class="ik" placeholder="Период" style="margin-bottom:5px;" />
        
 
     </div>
@@ -96,7 +96,7 @@
             $('.seas1').html("Фактическое значение показателя на "+@date);
             $('.seas2').html("Результативность показателя процесса на "+@date);
             }
-
+       
         });
     $("#example").on('DOMSubtreeModified', "td", function (e) {
         if ($(this).attr('class').split(' ').includes('num')) {
@@ -104,19 +104,33 @@
                 $(this).text('');
             }
             else {
-                var kek = $(this).parent().children();
-                kek[kek.length - 1].textContent = Math.floor( Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+                var kek = $(this).parent().children();               
+                if (isFinite(Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100)))) {
+                    if (Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100)) > 100) {
+                        kek[kek.length - 1].textContent = 100;
+                    }
+                    else {
+                        kek[kek.length - 1].textContent = Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+                    }
+                }
+                else {
+                    $(this).text('');
+                }
             }
+            
         }
     });
 
     window.onload = function () {
         $("td").removeAttr('contenteditable');
 
-        for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('contenteditable', 'true'); }
+        for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('contenteditable', 'true'); 
 
+            if (!isFinite(Number($("tr")[i].children[$("tr")[i].children.length - 1].textContent))) { $("tr")[i].children[$("tr")[i].children.length - 1].textContent = ""; }
+        }
     }
     function Send() {
+       
         var result = $('tbody')[0].innerHTML;
         var _url = window.location.href.split('/');
         var trashId = _url[_url.length - 1];
@@ -124,19 +138,33 @@
 
         var season = $("#season").val();
         if (result.length > 0 && season!="") {
-            
+            var coef = 0;
+            var temp = 0;
+            var rows = $("#example").find('tbody').children();
+            for (var i = 0; i < rows.length; i++) {
+                var ind = rows[i].children.length - 1;
+                
+                if (isFinite(Number(rows[i].children[ind].textContent))) {
+                    coef += Number(rows[i].children[ind].textContent);
+                    temp++;
+                }
+               
+            }
+            var coefAv = coef / temp;
+           
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("Report")',
+                    url: '@Url.Action("Report","Home")',
                     data: {
                         keks: result,
                         ikId: idIkProcess,
-                        season: season
+                        season: season,
+                        average: parseInt(coefAv)
                     }
                 }).done(function () {
-                    location.reload();
+                     window.location.href = '@Url.Action("History","Home")';
                 });
-            
+
         }
         else {
             alert("Таблица или период не заполнены");

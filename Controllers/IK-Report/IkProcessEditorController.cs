@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using SMKMIVLGU.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SMKMIVLGU.Models;
-using SMKMIVLGU.Models.IKProcess;
 
 namespace SMKMIVLGU.Controllers.IK_Report
 {
@@ -111,4 +109,3 @@ namespace SMKMIVLGU.Controllers.IK_Report
 
 	}
 }
- 

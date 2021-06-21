@@ -1,0 +1,98 @@
+﻿@model SMKMIVLGU.Models.Users.StatisticViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/report.css" />
+    <link rel="stylesheet" href="~/css/print.css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <style>
+        th {
+            font-weight: bold;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <p>Приложение А</p>
+        <p>Средние показатели процессов за период </p>
+        <br />
+    </div>
+
+
+    <h3 class="d-print-none">Статистика</h3>
+    <div class="d-print-none row" style="padding:15px;">
+        <form method="post" asp-action="ShowStatistic" asp-controller="Statistic">
+            <label>Год:</label>
+            <select asp-for="Date"  size="1">
+                <option>Все</option>
+                @foreach (var year in ViewBag.Years)
+                {
+                    <option  value="@year">@year</option>
+                }
+            </select>
+
+            <label>Период:</label>
+            <select asp-for="Period"size="1">
+                <option>Все</option>
+                @foreach (var month in ViewBag.Months)
+                {
+                    <option value="@month">@month</option>
+                }
+            </select>
+            <button type="submit">Сформировать отчет</button>
+        </form>
+
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+
+            <tr class="thead" style="background-color:red;">
+                <th>Код ИК-процесса</th>
+                <th>Раздел РСМК</th>
+                <th>Среднее значение по процессу</th>
+            </tr>
+
+            <tbody>
+                @if (Model.listItems != null)
+                {
+                    @foreach (var stat in Model.listItems)
+                    {
+                        <tr>
+                            <td>@stat.CodeIk</td>
+                            <td>@stat.RSMK</td>
+                            <td>@stat.AverageCoef</td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td colspan="2">Итого:</td>
+                    <td id="average"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button onclick="print()" style="margin:1px;" class="d-print-none btn btn-info">Печать статистики</button>
+
+
+
+</body>
+<script>
+  
+    window.onload = function () {
+        var coef = 0;
+        var temp = 0;
+        var rows = $("table").find('tbody').children();
+        for (var i = 0; i < rows.length; i++) {
+            var ind = rows[i].children.length - 1;
+
+            if (isFinite(Number(rows[i].children[ind].textContent))) {
+                coef += Number(rows[i].children[ind].textContent);
+                temp++;
+            }
+
+        }
+        var coefAv = coef / (temp-1);
+        $('#average').text(parseInt(coefAv));
+    };
+</script>

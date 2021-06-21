@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SMKMIVLGU.Models.IKProcess
 {
@@ -17,6 +14,7 @@ namespace SMKMIVLGU.Models.IKProcess
 		public int IkProcessId { get; set; }
 		public IkProcessViewModel IkProcess { get; set; }
 		public string Season { get; set; }
-		public string LoadTime { get; set; }
+		public DateTime LoadTime { get; set; }
+		public int AverageCoef { get; set; }
 	}
 }

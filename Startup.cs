@@ -1,14 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Identity;
 using SMKMIVLGU.Models;
-using Rotativa.AspNetCore;
 
 namespace SMKMIVLGU
 {
@@ -56,7 +53,7 @@ namespace SMKMIVLGU
 					name: "default",
 					pattern: "{controller=Auth}/{action=Authorization}/{id?}");
 			});
-			
+
 		}
 	}
 }

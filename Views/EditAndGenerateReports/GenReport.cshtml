@@ -24,18 +24,17 @@
     <button onclick="Edit()" type="submit" class="noPrint">Изменить</button>
     <button onclick="AddAsNew()" type="submit" class="noPrint">Сохранить как новый</button>
 </header>
-<body style="margin: 10mm 10mm 5mm 10mm;">
+<body>
     <div id="header">
-        <p contenteditable="true">Приложение А</p>
-        <p contenteditable="true">Планирование и результативность процесса 2.9 – Подготовка кадров высшей квалификации</p>
+        <p>Приложение А</p>
+        <p>Планирование и результативность процесса @ViewData["Process"] </p>
     </div>
     <div id="frame">
-        <div style="width: 15%; display: inline-block;">
-            <b>Период планирования:</b>
+        <div >
+            <b>Период планирования:Начало 01.01.@Model.LoadTime.Year конец 31.12.@Model.LoadTime.Year  </b>
         </div>
-        <div style="width: 75%; display: inline-block;">
-              <div id="date" contenteditable="true" ></div>  
-        </div>
+      
+
     </div>
     <div class="col-md-12">
 
@@ -91,7 +90,19 @@
 <br /> 
 <p />
 <script>
-    $('td').attr('contenteditable','true')
+    function go() {
+        $("td").removeAttr('contenteditable');
+
+        for (var i = 0; i < $("tr").length; i++) {
+            if ($("tr")[i].children[$("tr")[i].children.length - 3].textContent!=''){
+                $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('contenteditable', 'true');
+            }
+          
+            if (!isFinite(Number($("tr")[i].children[$("tr")[i].children.length - 1].textContent))) { $("tr")[i].children[$("tr")[i].children.length - 1].textContent = ""; }
+        }
+    };
+    document.addEventListener("DOMContentLoaded", go);
+    
    function Edit() {
 
             for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('class', 'num'); }
@@ -117,7 +128,7 @@
                     alert("Необходимо заполнить таблицу!");
                     bool = false;
                 }
-    }
+    };
      function AddAsNew() {
 
             for (var i = 0; i < $("tr").length; i++) { $("tr")[i].children[$("tr")[i].children.length - 2].setAttribute('class', 'num'); }
@@ -143,7 +154,7 @@
                     alert("Необходимо заполнить таблицу!");
                     bool = false;
                 }
-    }
+    };
     $(".table").on('DOMSubtreeModified', "td", function (e) {
         if ($(this).attr('class').split(' ').includes('num')) {
             if (!/^\d*[.]?\d*$/.test($(this).text())) {
@@ -151,7 +162,13 @@
             }
             else {
                 var kek = $(this).parent().children();
-                kek[kek.length - 1].textContent = Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+                if (Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100)) > 100) {
+                    kek[kek.length - 1].textContent = 100;
+                }
+                else {
+                    kek[kek.length - 1].textContent = Math.floor(Number(($(this).text()) / Number(kek[kek.length - 3].textContent) * 100));
+                }
+            
             }
         }
     });

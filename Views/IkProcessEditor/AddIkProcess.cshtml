@@ -123,14 +123,8 @@
                     </label>
                     <label class="btn btn-secondary">
                         <input type="radio" name="options" id="option2" autocomplete="off"> Соеденить строки
-                    </label>
-                   
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option4" autocomplete="off"> Числовая ячейка
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option4" autocomplete="off"> Обычная ячейка
-                    </label>
+                    </label>                 
+                  
                 </div>
 
                 <span class="float-right mb-3 mr-2">
@@ -279,9 +273,7 @@
         }
 
     });
-    $(function () {
-        $('#example')
-    })
+    
     $("#example").on('DOMSubtreeModified', "td", function (e) {
         if ($(this).attr('class').split(' ').includes('num')) {
             if (!/^\d*[.]?\d*$/.test($(this).text()) ) {

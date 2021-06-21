@@ -2,23 +2,23 @@
 
 namespace SMKMIVLGU.Migrations
 {
-    public partial class RebuildSomeoneTable : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<int>(
-                name: "idIkProcess",
-                table: "UserReports",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-        }
+	public partial class RebuildSomeoneTable : KekMigration
+	{
+		protected override void Up(MigrationBuilder migrationBuilder)
+		{
+			migrationBuilder.AddColumn<int>(
+				name: "idIkProcess",
+				table: "UserReports",
+				type: "int",
+				nullable: false,
+				defaultValue: 0);
+		}
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "idIkProcess",
-                table: "UserReports");
-        }
-    }
+		protected override void Down(MigrationBuilder migrationBuilder)
+		{
+			migrationBuilder.DropColumn(
+				name: "idIkProcess",
+				table: "UserReports");
+		}
+	}
 }

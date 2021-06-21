@@ -179,11 +179,14 @@ namespace SMKMIVLGU.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AverageCoef")
+                        .HasColumnType("int");
+
                     b.Property<int>("IkProcessId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LoadTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("LoadTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("RowHtmlCode")
                         .HasColumnType("nvarchar(max)");

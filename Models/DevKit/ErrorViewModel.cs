@@ -1,5 +1,3 @@
-using System;
-
 namespace SMKMIVLGU.Models
 {
 	public class ErrorViewModel

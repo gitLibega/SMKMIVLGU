@@ -34,30 +34,37 @@
 </head>
 <body>
     <header>
-        <label style="color:#60cc52;">Пользователь: @User.Identity.Name</label>
+        <label class="d-print-none"style="color:#60cc52;">Пользователь: @User.Identity.Name</label>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">СМК МИВЛГУ</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="History">СМК МИВЛГУ</a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">История</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="History">История</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Report">Заполнить отчет</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление системой</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-controller="Home" asp-action="UserPannel">Пользователи </a>
-                                <a class="dropdown-item" asp-controller="IkProcessEditor" asp-action="addIkProcess">Ик-процессы</a>
-                                <a class="dropdown-item" asp-controller="RolesManangement" asp-action="AddUserRole">Роли</a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Writer"))
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Report">Заполнить отчет</a>
+                            </li>
+                                }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление системой</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="UserPannel">Пользователи </a>
+                                    <a class="dropdown-item" asp-controller="IkProcessEditor" asp-action="addIkProcess">Ик-процессы</a>
+                                    <a class="dropdown-item" asp-controller="RolesManangement" asp-action="AddUserRole">Роли</a>
+                                    <a class="dropdown-item" asp-controller="Statistic" asp-action="ShowStatistic">Статистика</a>
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
+                        }
 
                     </ul>
 

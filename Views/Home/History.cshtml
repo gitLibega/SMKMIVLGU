@@ -1,0 +1,114 @@
+﻿@model List<SMKMIVLGU.Models.IKProcess.HistoryViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+</head>
+<body>
+
+    <h3>История отчетов</h3>
+    <table id="example" class="table mydatatable" style="width:100%">
+        <thead>
+            <tr>
+                <th>Пользователь</th>                
+                <th>Документ</th>
+                <th>Дата</th>
+                <th>Действие</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            { Model.Reverse();
+                @foreach (var report in Model)
+                {
+                    if (ViewBag.relsReports.Contains(report))
+                    {
+                        <tr style="background-color:#ffeb99">
+
+                            <td>@report.Department</td>
+                            <td>@report.ikProcess</td>
+                            <td>@report.loadTime</td>
+                            <td>
+                                <a asp-controller="EditAndGenerateReports" asp-action="GenerateReport" target="_blank" asp-route-id="@report.id"><i class="fas fa-cogs fa-2x" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    else if (ViewBag.myReports.Contains(report))
+                    {
+                        if (report == ViewBag.myReports[ViewBag.myReports.Count - 1])
+                        {
+                            <tr style="background: linear-gradient(to top,#e0443f 1%, #d9edad 20%)">
+                                
+                                    <td>@report.Department</td>
+                                    <td>@report.ikProcess</td>
+                                    <td>@report.loadTime</td>
+                                    <td>
+                                        <a asp-controller="EditAndGenerateReports" asp-action="GenerateReport" target="_blank" asp-route-id="@report.id"><i class="fas fa-cogs fa-2x" aria-hidden="true"></i></a>
+                                    </td>
+                                
+                            </tr>
+                        }
+                        else
+                        {
+                        <tr style="background-color: #d9edad">
+                            <td>@report.Department</td>
+                            <td>@report.ikProcess</td>
+                            <td>@report.loadTime</td>
+                            <td>
+                                <a asp-controller="EditAndGenerateReports" asp-action="GenerateReport" target="_blank" asp-route-id="@report.id"><i class="fas fa-cogs fa-2x" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    }
+
+                    else
+                    {
+                        if (User.IsInRole("Admin") || User.IsInRole("Reader"))
+                        {
+                        <tr>
+                            <td>@report.Department</td>
+                            <td>@report.ikProcess</td>
+                            <td>@report.loadTime</td>
+                            <td>
+                                <a asp-controller="EditAndGenerateReports" asp-action="GenerateReport" target="_blank" asp-route-id="@report.id"><i class="fas fa-cogs fa-2x" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                            } 
+                        }
+                    }
+                }
+        </tbody>
+   
+    </table>
+
+</body>
+
+<script>
+    $('.mydatatable').DataTable({
+        "pagingType": "full_numbers",
+        lengthMenu: [[5, 10, 15, 20, 50, -1], [5, 10, 15, 20, 50, "Все"]],
+         "oLanguage": {
+            "sLengthMenu": "Показать _MENU_ записей на странице",
+            "sZeroRecords": "Извините - ничего не найдено",
+            "sInfo": "Показано _START_ до _END_ из _TOTAL_ записей",
+            "sInfoEmpty": "Нет записей",
+            "sInfoFiltered": "(из _MAX_ записей)",
+            "sSearch": "Поиск:",
+            "oPaginate": {
+                "sNext": "След. стр.",
+                "sPrevious": "Пред. стр.",
+                "sFirst": "Первая",
+                "sLast": "Последняя"
+            }
+        }
+    });
+</script>
